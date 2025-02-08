@@ -38,6 +38,7 @@ fun JetnewsApp(
     appContainer: AppContainer,
     widthSizeClass: WindowWidthSizeClass,
 ) {
+    //自定义了一个主题
     JetnewsTheme {
         val navController = rememberNavController()
         val navigationActions = remember(navController) {
@@ -53,6 +54,7 @@ fun JetnewsApp(
         val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
         val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
 
+        //都是一些系统的空间
         ModalNavigationDrawer(
             drawerContent = {
                 AppDrawer(
@@ -60,7 +62,10 @@ fun JetnewsApp(
                     currentRoute = currentRoute,
                     navigateToHome = navigationActions.navigateToHome,
                     navigateToInterests = navigationActions.navigateToInterests,
-                    closeDrawer = { coroutineScope.launch { sizeAwareDrawerState.close() } }
+                    closeDrawer = {
+                        //加入了kotlin的协程的概念
+                        coroutineScope.launch { sizeAwareDrawerState.close() }
+                    }
                 )
             },
             drawerState = sizeAwareDrawerState,

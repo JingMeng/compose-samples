@@ -42,6 +42,9 @@ import androidx.compose.ui.unit.dp
 import com.example.jetnews.R
 import com.example.jetnews.ui.theme.JetnewsTheme
 
+/**
+ * 侧边栏
+ */
 @Composable
 fun AppDrawer(
     drawerState: DrawerState,
@@ -75,6 +78,10 @@ fun AppDrawer(
     }
 }
 
+/**
+ * 顶部的第一行数据
+ * todo:基本的布局药学会使用
+ */
 @Composable
 private fun JetNewsLogo(modifier: Modifier = Modifier) {
     Row(modifier = modifier) {
@@ -83,6 +90,7 @@ private fun JetNewsLogo(modifier: Modifier = Modifier) {
             contentDescription = null,
             tint = MaterialTheme.colorScheme.primary
         )
+        //这个 8dp都是系统提供了
         Spacer(Modifier.width(8.dp))
         Icon(
             painter = painterResource(R.drawable.ic_jetnews_wordmark),
