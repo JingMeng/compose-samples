@@ -41,6 +41,7 @@ fun JetnewsApp(
     //自定义了一个主题
     JetnewsTheme {
         val navController = rememberNavController()
+        //包裹创建了一层，转换了对象，起到了封装的作用
         val navigationActions = remember(navController) {
             JetnewsNavigationActions(navController)
         }
@@ -54,7 +55,7 @@ fun JetnewsApp(
         val isExpandedScreen = widthSizeClass == WindowWidthSizeClass.Expanded
         val sizeAwareDrawerState = rememberSizeAwareDrawerState(isExpandedScreen)
 
-        //都是一些系统的空间
+        //都是一些系统的控件
         ModalNavigationDrawer(
             drawerContent = {
                 AppDrawer(
@@ -73,9 +74,11 @@ fun JetnewsApp(
             gesturesEnabled = !isExpandedScreen
         ) {
             Row {
+                //行
                 if (isExpandedScreen) {
                     AppNavRail(
                         currentRoute = currentRoute,
+                        //这两个地方也是导航的操作
                         navigateToHome = navigationActions.navigateToHome,
                         navigateToInterests = navigationActions.navigateToInterests,
                     )
@@ -84,6 +87,7 @@ fun JetnewsApp(
                     appContainer = appContainer,
                     isExpandedScreen = isExpandedScreen,
                     navController = navController,
+                    //这个地方是点击事件
                     openDrawer = { coroutineScope.launch { sizeAwareDrawerState.open() } },
                 )
             }
